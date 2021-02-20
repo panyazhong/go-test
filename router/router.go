@@ -1,6 +1,8 @@
 package router
 
 import (
+	"dapan/utils"
+	"dapan/views/auth"
 	"dapan/views/users"
 
 	"github.com/gin-gonic/gin"
@@ -8,6 +10,11 @@ import (
 
 func SetView(r *gin.Engine) {
 	publicApi := r.Group("/api")
+	auth.AuthRoute(publicApi)
 
-	users.UsersRoute(publicApi)
+	// 需要认证的路由
+	authApi := r.Group("/api")
+	authApi.Use(utils.Auth)
+
+	users.UsersRoute(authApi)
 }

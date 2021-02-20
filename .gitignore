@@ -1,0 +1,13 @@
+vendor
+.idea
+data/data.db
+config/server.json
+go.sum
+logs
+s
+server
+snapshot
+conf/*.json
+dist
+installer
+dapan.exe

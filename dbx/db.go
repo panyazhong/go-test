@@ -24,7 +24,23 @@ func SetMysqlDB() {
 
 	db.AutoMigrate(
 		&model.UserInfo{},
+		&model.UserRole{},
 	)
 
 	DB = db
+}
+
+func InitData() {
+	roles := []model.UserRole{
+		{
+			Name: "管理员", 
+			Value: "admin",
+		},
+		{
+			Name: "用户", 
+			Value: "user",
+		},
+	}
+
+	DB.Create(&roles)
 }
